@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="cart-container">
+  <h2>Seu Carrinho</h2>
+  
+  @if (cartItems.length > 0) {
+    <div class="cart-items">
+      @for (item of cartItems; track item.id) {
+        <div class="cart-item">
+          <div class="image-section">
+            <img [src]="item.avatar || 'assets/default-product.png'" [alt]="item.name" class="item-image">
+          </div>
+          
+          <div class="info-section">
+            <div class="header-section">
+              <h3 class="item-name">{{ item.name }}</h3>
+              <button class="trash-button" (click)="removeItem(item.id)" title="Remover item">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+              </button>
+            </div>
+            
+            <p class="item-description">{{ item.description }}</p>
+            
+            <div class="footer-section">
+              <span class="item-price">{{ item.price | currency:'BRL' }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    
+    <div class="cart-summary">
+      <p class="total">Total: {{ getTotal() | currency:'BRL' }}</p>
+      <button class="checkout-button">Finalizar Compra</button>
+    </div>
+  } @else {
+    <p class="empty-cart">Seu carrinho está vazio</p>
+  }
+</div>
+
+<app-footer></app-footer>

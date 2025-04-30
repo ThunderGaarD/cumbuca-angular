@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+@if (!notFound && product) {
+  <div class="itemdetails-container">
+    <div class="itemdetails-image-section">
+      <img [src]="imagePath" [alt]="product.name" class="product-image">
+    </div>
+    
+    <div class="itemdetails-info-section">
+      <h1 class="itemdetails-name">{{ product.name }}</h1>
+      <p class="itemdetails-price">{{ product.price | currency:'BRL' }}</p>
+      
+      <div class="itemdetails-description">
+        <h3>Descrição:</h3>
+        <p>{{ product.description }}</p>
+      </div>
+      
+      <button class="add-to-cart-button" (click)="addToCart()">
+        Adicionar ao carrinho
+      </button>
+    </div>
+  </div>
+}
+<app-footer></app-footer>
